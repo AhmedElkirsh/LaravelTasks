@@ -29,8 +29,8 @@ class TrackController extends Controller
 
     public function create()
     {    
-        $tracks=Track::all();
-        return view('tracks.create',compact('tracks'));
+        // $tracks=Track::all();
+        return view('tracks.create');
     }
 
     function show(Track $track)
@@ -74,5 +74,4 @@ class TrackController extends Controller
         return view('tracks.edit', compact('track'));
     }
 
-  
 }

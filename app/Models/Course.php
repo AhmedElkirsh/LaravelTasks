@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Track extends Model
+class Course extends Model
 {
     use HasFactory;
+    protected $fillable = ['name','maxscore'];
 
-    protected $guarded = [];
-
-    public function students()
-    {
-        return $this->hasMany(Student::class);
-    }
-    public function courses()
+    public function tracks()
     {
         return $this->belongsToMany(Track::class);
     }

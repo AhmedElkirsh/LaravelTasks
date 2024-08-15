@@ -21,6 +21,7 @@
                 <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
                 <x-nav-link href="/students" :active="request()->is('/studentsp')">Students</x-nav-link>
                 <x-nav-link href="/tracks" :active="request()->is('tracks')">Tracks</x-nav-link>
+                <x-nav-link href="/courses" :active="request()->is('courses')">Courses</x-nav-link>
             </div>
           </div>
         </div>
