@@ -10,8 +10,8 @@ class TrackController extends Controller
 {
     public function index() 
     {
-        $tracks=Track::all();
-        return view('tracks.index',compact("tracks"));
+        $tracks = Track::all();
+        return view('tracks.index', compact('tracks'));
     }
 
     public function store(StoreTrackRequest $request)
@@ -23,24 +23,25 @@ class TrackController extends Controller
             $validated['image'] = $imagePath;
         }
 
-        $student = Track::create($validated);
+        Track::create($validated);
         return to_route('tracks.index');
     }
 
     public function create()
     {    
-        // $tracks=Track::all();
         return view('tracks.create');
     }
 
-    function show(Track $track)
+    public function show(Track $track)
     {
-        return view('tracks/show',compact("track"));
+        
+        $students = $track->students;
+       
+        return view('tracks.show', compact('track', 'students'));
     }
 
     public function update(Track $track, StoreTrackRequest $request)
     { 
-        
         $validated = $request->validated();
 
         if ($request->hasFile('image')) {
@@ -55,7 +56,7 @@ class TrackController extends Controller
 
         $track->update($validated);
 
-        return to_route('tracks.index')->with('success', 'Student updated successfully.');
+        return to_route('tracks.index')->with('success', 'Track updated successfully.');
     }
 
     public function destroy(Track $track)
@@ -66,12 +67,11 @@ class TrackController extends Controller
 
         $track->delete();
 
-        return to_route('tracks.index')->with('success', 'Student deleted successfully.');
+        return to_route('tracks.index')->with('success', 'Track deleted successfully.');
     }
 
     public function edit(Track $track)
     {
         return view('tracks.edit', compact('track'));
     }
-
 }
